@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            onMouseClicked="#test"
+            fx:controller="com.example.shoppingsystem.HelloController"
+            fx:id="ap">
+    <children>
+        <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="34.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../star.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="title00" alignment="CENTER" layoutX="-2.0" layoutY="139.0" prefHeight="38.0" prefWidth="176.0" text="Title">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="ratio00" alignment="CENTER_RIGHT" layoutY="177.0" prefHeight="22.0" prefWidth="34.0" text="Ratio">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="price00" alignment="CENTER_RIGHT" layoutY="200.0" prefHeight="46.0" prefWidth="136.0" text="Price">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="26.0" fitWidth="34.0" layoutX="140.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../add.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="145.0" layoutY="204.0" prefHeight="38.0" prefWidth="15.0" text="\$">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="number00" layoutX="68.0" layoutY="179.0" prefHeight="18.0" prefWidth="69.0" text="Number" textFill="#eb1010" />
+    </children>
+</AnchorPane>
