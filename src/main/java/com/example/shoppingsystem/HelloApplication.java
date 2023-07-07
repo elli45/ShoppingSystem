@@ -26,9 +26,10 @@ public class HelloApplication extends Application implements Initializable {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1100,700);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
@@ -55,22 +56,23 @@ public class HelloApplication extends Application implements Initializable {
 
 
 
-
-        gridPane.add(creatItemView(),0,0);
-        gridPane.add(creatItemView(),0,1);
-        gridPane.add(creatItemView(),0,2);
+        //parms2 = column, parms3 = row [6X6]
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 3; j++) {
+                gridPane.add(creatItemView(),i,j);
+            }
+        }
 
 
     }
 
     private static VBox creatItemView(){
         ImageView img = new ImageView("milk.png");
-        img.setFitWidth(70);
-        img.setFitHeight(70);
-        img.setPreserveRatio(true);
+        img.setFitWidth(60);
+        img.setFitHeight(60);
 
         Label label = new Label("Milk");
-        label.setStyle("-fx-font-size: 25");
+        label.setStyle("-fx-font-size: 16");
         label.setAlignment(Pos.CENTER_LEFT);
 
         Label label2 = new Label("5");
@@ -78,7 +80,7 @@ public class HelloApplication extends Application implements Initializable {
         imgRating.setFitWidth(20);
         imgRating.setFitHeight(20);
 
-        Label label3 = new Label("0");
+        Label label3 = new Label("");
         ImageView imgAdd = new ImageView("add.png");
         imgAdd.setFitWidth(20);
         imgAdd.setFitHeight(20);
@@ -87,11 +89,11 @@ public class HelloApplication extends Application implements Initializable {
         hBox.setSpacing(7.0);
 
         Label lblPrice = new Label("100 Afg");
-        lblPrice.setStyle("-fx-font-size: 20; -fx-text-fill: cyan");
+        lblPrice.setStyle("-fx-font-size: 14; -fx-text-fill: blue");
 
         VBox vBox = new VBox(img, label, hBox, lblPrice);
-        vBox.setMaxHeight(110);
-        vBox.setMaxWidth(100);
+        vBox.setMaxHeight(Region.USE_COMPUTED_SIZE);
+        vBox.setMaxWidth(Region.USE_COMPUTED_SIZE);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(5.0);
         vBox.setStyle("-fx-background-color: white");
