@@ -27,7 +27,7 @@
                   <Image url="@../../../basket.png" />
                </image>
             </ImageView>
-            <Button fx:id="loginbutton" alignment="CENTER" layoutX="1141.0" layoutY="33.0" mnemonicParsing="false" onAction="#switchToLoginScene" prefHeight="38.0" prefWidth="126.0" text="Login/Sign up">
+            <Button fx:id="loginbutton" alignment="CENTER" layoutX="1141.0" layoutY="33.0" mnemonicParsing="false" onAction="#switchToLoginScene" prefHeight="38.0" prefWidth="126.0" text="Sign in/up">
                <font>
                   <Font name="A Nahar-Bold" size="16.0" />
                </font>

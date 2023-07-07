@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class HelloApplication extends Application implements Initializable {
@@ -100,6 +101,7 @@ public class HelloApplication extends Application implements Initializable {
 
         return vBox;
     }
+
     public void goToNextPageButtonOnAction(ActionEvent event) {
 
     }
@@ -108,8 +110,10 @@ public class HelloApplication extends Application implements Initializable {
 
     }
 
-    public void switchToLoginScene(ActionEvent event) {
-
+    public void switchToLoginScene(ActionEvent event) throws SQLException {
+        MyDatabase myDatabase = new MyDatabase();
+        myDatabase.openDatabase();
+        myDatabase.getAllUsers();
     }
 
 }
