@@ -79,4 +79,29 @@ public class MyDatabase {
         }
     }
 
+    public List<Commodity> getCommoditiesByType(String type) throws SQLException {
+        if (connection != null) {
+            ArrayList<Commodity> commodities = new ArrayList<>();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT  * FROM "+type);
+            if (resultSet != null) {
+                while (resultSet.next()){
+                    Commodity commodity = new Commodity();
+                    commodity.setPrice(Double.parseDouble(resultSet.getString("Price")));
+                    commodity.setRatio(Double.parseDouble(resultSet.getString("Ratio")));
+                    commodity.setNumber(Integer.parseInt(resultSet.getString("Number")));
+                    commodity.setBrand(resultSet.getString("Brand"));
+                    commodity.setTitle(resultSet.getString("Title"));
+                    commodity.setType(resultSet.getString("Type"));
+                    commodities.add(commodity);
+                }
+                return commodities;
+            }
+            return null;
+
+        }else {
+            System.out.println("open the database");
+            return null;
+        }
+    }
 }

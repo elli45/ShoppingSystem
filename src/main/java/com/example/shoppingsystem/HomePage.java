@@ -331,8 +331,20 @@ public class HomePage extends Application implements Initializable {
         vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                System.out.println("done "+ commodity.type);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("commodidy-details-view.fxml"));
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
+                Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setWidth(700);
+                stage.setHeight(400);
+                stage.setScene(scene);
+                stage.show();
             }
         });
 
