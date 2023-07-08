@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shoppingsystem.HelloApplication">
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shoppingsystem.HomePage">
    <children>
       <AnchorPane prefHeight="107.0" prefWidth="1400.0" style="-fx-background-color: #26c6da;">
          <children>
@@ -48,7 +48,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <GridPane fx:id="gridPane" hgap="5.0" layoutX="184.0" layoutY="172.0" nodeOrientation="LEFT_TO_RIGHT" vgap="5.0">
+      <GridPane fx:id="gridPane" onMouseClicked="#test" hgap="5.0" layoutX="184.0" layoutY="172.0" nodeOrientation="LEFT_TO_RIGHT" vgap="5.0">
         <columnConstraints>
             <ColumnConstraints hgrow="NEVER" minWidth="150.0" />
             <ColumnConstraints hgrow="NEVER" minWidth="150.0" />
