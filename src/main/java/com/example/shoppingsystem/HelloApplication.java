@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HelloApplication extends Application implements Initializable {
@@ -43,45 +44,37 @@ public class HelloApplication extends Application implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("kala_item_view.fxml"));
-//        try {
-//            Scene scene = new Scene(fxmlLoader.load());
-//            Label lbl = (Label) scene.lookup("#title00");
-//            lbl.setText("wowowow");
-//            Parent item = scene.getRoot();
-//            item.setId("one");
-//            //gridPane.add(item,0, 0);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
+        //database
+        MyDatabase myDatabase = new MyDatabase();
+        myDatabase.openDatabase();
 
-
-        //parms2 = column, parms3 = row [6X6]
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 3; j++) {
-                gridPane.add(creatItemView(),i,j);
-            }
+        List<Commodity> allCommodities = null;
+        try {
+            allCommodities = myDatabase.getAllCommodities();
+            displayCommodities(gridPane, allCommodities);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("problem in displaying all commodities - "+e.getMessage());
         }
-
 
     }
 
-    private static VBox creatItemView(){
-        ImageView img = new ImageView("milk.png");
+    private static VBox creatItemView(Commodity commodity){
+        ImageView img = new ImageView("yogurt.png");
         img.setFitWidth(60);
         img.setFitHeight(60);
 
-        Label label = new Label("Milk");
+        Label label = new Label(commodity.type);
         label.setStyle("-fx-font-size: 16");
         label.setAlignment(Pos.CENTER_LEFT);
 
-        Label label2 = new Label("5");
+        Label label2 = new Label(String.valueOf(commodity.ratio));
         ImageView imgRating = new ImageView("star.png");
         imgRating.setFitWidth(20);
         imgRating.setFitHeight(20);
 
-        Label label3 = new Label("");
+        Label label3 = new Label(String.valueOf(commodity.number));
         ImageView imgAdd = new ImageView("add.png");
         imgAdd.setFitWidth(20);
         imgAdd.setFitHeight(20);
@@ -89,7 +82,7 @@ public class HelloApplication extends Application implements Initializable {
         hBox.setAlignment(Pos.CENTER);
         hBox.setSpacing(7.0);
 
-        Label lblPrice = new Label("100 Afg");
+        Label lblPrice = new Label(String.valueOf(commodity.price)+"Afg");
         lblPrice.setStyle("-fx-font-size: 14; -fx-text-fill: blue");
 
         VBox vBox = new VBox(img, label, hBox, lblPrice);
@@ -102,6 +95,21 @@ public class HelloApplication extends Application implements Initializable {
         return vBox;
     }
 
+    private static void displayCommodities(GridPane gridPane, List<Commodity> allCommodities){
+        for (int i = 0; i < allCommodities.size(); i++) {
+            if (i <= 6) {
+                gridPane.add(creatItemView(allCommodities.get(i)),i,0);
+                System.out.println(i+"0");
+            }else if (i <= 13){
+                System.out.println("-"+(i-7)+1);
+                gridPane.add(creatItemView(allCommodities.get(i)),i-7,1);
+            }else if (i <= 19){
+                System.out.println("--"+(i-14)+2);
+                gridPane.add(creatItemView(allCommodities.get(i)),i-14,2);
+            }
+        }
+    }
+
     public void goToNextPageButtonOnAction(ActionEvent event) {
 
     }
@@ -110,10 +118,19 @@ public class HelloApplication extends Application implements Initializable {
 
     }
 
-    public void switchToLoginScene(ActionEvent event) throws SQLException {
-        MyDatabase myDatabase = new MyDatabase();
-        myDatabase.openDatabase();
-        myDatabase.getAllUsers();
+    public void switchToLoginScene(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login-scene.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
